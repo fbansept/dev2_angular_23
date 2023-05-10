@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { EnMajusculePipe } from './pipes/en-majuscule.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
     ConnexionComponent,
     Page404Component,
     EditionArticleComponent,
+    EnMajusculePipe,
   ],
   imports: [
     BrowserModule,

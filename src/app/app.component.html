@@ -3,7 +3,7 @@
   aria-label="Fifth navbar example"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/accueil" >Super site</a>
+    <a class="navbar-brand" routerLink="/accueil">Super site</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -19,19 +19,20 @@
     <div class="collapse navbar-collapse" id="navbarsExample05">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" 
-            routerLink="/accueil" 
-            routerLinkActive="active"
+          <a class="nav-link" routerLink="/accueil" routerLinkActive="active"
             >Accueil</a
           >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" 
-            routerLink="/connexion" 
-            routerLinkActive="active"
+        <li *ngIf="!auth.connecte; else deconnexion" class="nav-item">
+          <a class="nav-link" routerLink="/connexion" routerLinkActive="active"
             >Connexion</a
           >
         </li>
+        <ng-template #deconnexion>
+          <li class="nav-item">
+            <a class="nav-link">Déconnexion</a>
+          </li>
+        </ng-template>
       </ul>
       <form role="search">
         <input

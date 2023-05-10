@@ -7,10 +7,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./edition-article.component.scss'],
 })
 export class EditionArticleComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  titre: string = 'eDitIoN UtilisateuR';
+  aujourdhui: Date = new Date();
+
+  constructor(private formBuilder: FormBuilder) {
+  }
 
   formulaire: FormGroup = this.formBuilder.group({
-    nom: ['', [Validators.required, Validators.maxLength(100)]],
+    nom: ['', [Validators.required, Validators.maxLength(20)]],
     description: ['', [Validators.required, Validators.minLength(10)]],
   });
 
