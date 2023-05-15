@@ -7,12 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./accueil.component.scss'],
 })
 export class AccueilComponent {
-
-  listeArticle:any = [];
+  listeArticle: any = [];
 
   constructor(private http: HttpClient) {
-    this.http
-      .get('http://jsonplaceholder.typicode.com/posts')
-      .subscribe((articles) => this.listeArticle = articles);
+   this.raffraichirListeArticle();
+  }
+
+  raffraichirListeArticle() {
+     this.http
+      .get('http://localhost/backend-angular-dev2/liste-articles.php')
+      .subscribe((articles) => (this.listeArticle = articles));
+  }
+
+  onSuppressionArticle(idArticle: number) {
+    this.http.delete(
+      'http://localhost/backend-angular-dev2/suppression-article.php?id=' + idArticle
+    ).subscribe((reponse) => this.raffraichirListeArticle());
   }
 }

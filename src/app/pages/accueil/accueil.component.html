@@ -1,13 +1,14 @@
 <div class="container">
-
-  <a mat-raised-button color="primary" routerLink="/ajouter-article">Ajouter un article</a>
+  <a mat-raised-button color="primary" routerLink="/ajouter-article"
+    >Ajouter un article</a
+  >
 
   <div class="row">
     <div *ngFor="let article of listeArticle" class="col-6">
       <mat-card class="mt-3">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{ article.title }}</mat-card-title>
+          <mat-card-title>{{ article.nom }}</mat-card-title>
           <mat-card-subtitle>Dog Breed</mat-card-subtitle>
         </mat-card-header>
         <img
@@ -17,15 +18,24 @@
         />
         <mat-card-content>
           <p>
-            {{ article.body }}
+            {{ article.description }}
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary">
+          <button
+            [routerLink]="['/modifier-article', article.id]"
+            mat-raised-button
+            color="primary"
+          >
             <mat-icon fontIcon="edit"></mat-icon>
             Modifier
           </button>
-          <button mat-raised-button color="warn" class="ms-2">
+          <button
+            (click)="onSuppressionArticle(article.id)"
+            mat-raised-button
+            color="warn"
+            class="ms-2"
+          >
             <mat-icon fontIcon="delete"></mat-icon>
             Supprimer
           </button>
