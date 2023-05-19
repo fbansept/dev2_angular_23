@@ -10,18 +10,28 @@ export class AccueilComponent {
   listeArticle: any = [];
 
   constructor(private http: HttpClient) {
-   this.raffraichirListeArticle();
+    this.raffraichirListeArticle();
   }
 
   raffraichirListeArticle() {
-     this.http
+    this.http
       .get('http://localhost/backend-angular-dev2/liste-articles.php')
       .subscribe((articles) => (this.listeArticle = articles));
   }
 
   onSuppressionArticle(idArticle: number) {
-    this.http.delete(
-      'http://localhost/backend-angular-dev2/suppression-article.php?id=' + idArticle
-    ).subscribe((reponse) => this.raffraichirListeArticle());
+    const jwt = localStorage.getItem('jwt');
+
+    if (jwt) {
+      const enTete = { Authorization: jwt };
+
+      this.http
+        .delete(
+          'http://localhost/backend-angular-dev2/suppression-article.php?id=' +
+            idArticle,
+          { headers: enTete }
+        )
+        .subscribe((reponse) => this.raffraichirListeArticle());
+    }
   }
 }
