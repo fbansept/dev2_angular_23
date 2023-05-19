@@ -42,13 +42,20 @@ export class EditionArticleComponent {
       const nouvelArticle = this.formulaire.value;
       nouvelArticle.id = this.idArticle;
 
-      this.http
-        .post(
-          'http://localhost/backend-angular-dev2/' + 
-          (this.idArticle == null ? 'ajout-article' : 'modifier-article') + '.php',
-          nouvelArticle
-        )
-        .subscribe((resultat) => this.router.navigateByUrl('/accueil'));
+      const jwt = localStorage.getItem("jwt");
+
+      if(jwt) {
+
+        this.http
+          .post(
+            'http://localhost/backend-angular-dev2/' +
+              (this.idArticle == null ? 'ajout-article' : 'modifier-article') +
+              '.php',
+            nouvelArticle,
+            { headers: { Authorization: jwt } }
+          )
+          .subscribe((resultat) => this.router.navigateByUrl('/accueil'));
+      }
     }
   }
 }
